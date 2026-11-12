@@ -1,0 +1,21 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "legal-data-hunter",
+  "displayName": "Legal Data Hunter",
+  "version": "1.0.0",
+  "description": "Search and resolve primary legal sources across 160+ jurisdictions via Legal Data Hunter's MCP (legislation, case law, and official doctrine).",
+  "logo": "assets/logo.svg",
+  "suggestedPrompts": [
+    "Search recent GDPR enforcement decisions in France and the EU",
+    "Resolve this citation and fetch the full judgment text",
+    "Which countries and courts does Legal Data Hunter cover for company law?"
+  ],
+  "author": {
+    "name": "Legal Data Hunter",
+    "url": "https://legaldatahunter.com"
+  },
+  "homepage": "https://legaldatahunter.com",
+  "repository": "https://github.com/legaldatahunter/antigravity-plugin",
+  "license": "Proprietary",
+  "keywords": ["legal", "law", "case-law", "legislation", "mcp", "search"]
+}

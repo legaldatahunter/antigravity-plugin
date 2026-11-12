@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "legal-data-hunter": {
+      "url": "https://legaldatahunter.com/mcp",
+      "oauth": {}
+    }
+  }
+}
