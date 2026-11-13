@@ -2,13 +2,13 @@
   "$schema": "https://antigravity.google/schemas/v1/plugin.json",
   "name": "legal-data-hunter",
   "displayName": "Legal Data Hunter",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Search and resolve primary legal sources across 230+ jurisdictions: legislation, case law, and citations, via the Legal Data Hunter MCP.",
   "logo": "assets/logo.svg",
   "suggestedPrompts": [
-    "Search recent GDPR enforcement decisions in France and the EU",
-    "Resolve this citation and fetch the full judgment text",
-    "Which countries and courts does Legal Data Hunter cover for company law?"
+    "Analyze EU-to-third-country data transfers under GDPR Article 46 SCCs, with verified citations",
+    "Find Article 1240 of the French Code civil and give me the official source link",
+    "Compare how France, Germany, and the EU handle the GDPR one-stop-shop mechanism"
   ],
   "author": {
     "name": "Legal Data Hunter",
@@ -25,6 +25,8 @@
     "citation",
     "ecli",
     "mcp",
-    "search"
+    "search",
+    "research",
+    "memo"
   ]
 }
