@@ -20,6 +20,7 @@ The plugin also includes a `legal-search` skill that guides agents through the r
 
 - From the Antigravity Marketplace, once listed.
 - From a local checkout: `agy plugin install .`
+- From GitHub: clone https://github.com/legaldatahunter/antigravity-plugin and run `agy plugin install .` inside it.
 
 ## Authentication
 
