@@ -14,7 +14,20 @@ Remote MCP tools served from `https://legaldatahunter.com/mcp` (Streamable HTTP)
 - `discover_countries`, `discover_sources`, `get_filters`: coverage and filter discovery
 - `report_source_issue`: report data quality problems
 
-The plugin also includes a `legal-search` skill that guides agents through the recommended tool order.
+## Skills
+
+The plugin ships six skills that load on demand. Run them as slash commands or let the agent pick them up from your request.
+
+| Skill | Use it for | Example |
+|---|---|---|
+| `legal-research` | General legal research: statutes, case law, official doctrine, single or multi-jurisdiction questions, memo-style answers | `/legal-research GDPR Article 46 SCC transfers and the Schrems II line of cases` |
+| `cross-border-comparison` | Explicit side-by-side comparison of how several jurisdictions treat the same question | `/cross-border-comparison France, Germany and the EU on the GDPR one-stop-shop` |
+| `resolve-citation` | Turning one citation or informal reference (ECLI, CELEX, article, docket number) into the exact document and a verified URL | `/resolve-citation Article 1240 of the French Code civil` |
+| `legal-citations` | Citation discipline: verified inline links, no invented URLs, Sources section | `/legal-citations How should I cite CJEU case law in this memo?` |
+| `legal-risk-assessment` | Severity × likelihood scoring per jurisdiction and escalation to outside counsel | `/legal-risk-assessment Score our cross-border data-transfer exposure` |
+| `multi-issue-memo` | Long-form memo that resolves each enumerated sub-issue with its own statute and leading case | `/multi-issue-memo (1) liability of the building's keeper, (2) fault of the victim` |
+
+Legal Data Hunter assists with legal workflows but does not provide legal advice; have qualified professionals review the output.
 
 ## Install
 
@@ -28,9 +41,9 @@ On first use, sign in with GitHub or Google in your browser (OAuth). No API key 
 
 ## Example prompts
 
-- Search recent GDPR enforcement decisions in France and the EU
-- Resolve this citation and fetch the full judgment text
-- Which countries and courts does Legal Data Hunter cover for company law?
+- Analyze EU-to-third-country data transfers under GDPR Article 46 SCCs, with verified citations
+- Find Article 1240 of the French Code civil and give me the official source link
+- Compare how France, Germany, and the EU handle the GDPR one-stop-shop mechanism
 
 ## Validate
 
