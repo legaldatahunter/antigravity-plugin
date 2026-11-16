@@ -1,8 +1,6 @@
 # Legal Data Hunter for Google Antigravity
 
-Connect [Legal Data Hunter](https://legaldatahunter.com) to Antigravity so agents can search and resolve primary legal sources: 38M+ legal documents across 230+ jurisdictions, covering legislation, case law, and official doctrine. Citation resolution covers 55+ countries.
-
-Legal Data Hunter is an official partner of Anthropic and OpenAI, with official Claude and ChatGPT connectors.
+This plugin connects [Legal Data Hunter](https://legaldatahunter.com) to Antigravity and Gemini. Agents can search official law from 230+ jurisdictions (legislation, case law, and official doctrine) through the Legal Data Hunter MCP, with every result linked to the official text. Citation resolution covers 55+ countries.
 
 ## Tools
 
@@ -57,5 +55,3 @@ agy plugin validate --strict .
 - Connect guide: https://legaldatahunter.com/connect
 - Docs: https://legaldatahunter.com/docs
 - Support: https://legaldatahunter.com/support or zach@legaldatahunter.com
-- Claude connector: https://claude.com/marketplace/connectors/legal-data-hunter
-- ChatGPT plugin: https://openai.com/business/plugins/legal-data-hunter/
