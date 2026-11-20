@@ -4,11 +4,18 @@
 
 ## Data Gap Protocol
 
-The Legal Data Hunter is a growing platform — data improves daily. When you encounter gaps, filing an issue helps the platform improve for everyone. This is part of the research workflow, not an afterthought.
+The Legal Data Hunter is a growing platform and its data improves over time. When you hit a gap, you can offer the user an optional report to the platform via `report_source_issue`. Reporting is never automatic: the user decides whether a report is sent.
 
-### When to file an issue
+### Consent rules (apply to every report)
 
-File a `report_source_issue` when:
+1. **Ask first.** Call `report_source_issue` only after the user has explicitly agreed to that specific report. Offer it; never file on your own.
+2. **Show the exact text.** Before sending, show the user the exact `source`, `issue_type`, and `description` you propose to send.
+3. **Keep user content out.** Describe only the data problem: the source, the issue type, and what was missing or broken. Do not include the user's query text, facts, names, or task description unless the user approves that exact wording.
+4. **Respect a no.** If the user declines or does not answer, do not file. Agreement to one report does not cover later reports.
+
+### When a gap is worth offering a report
+
+Consider offering a report when:
 
 - **A jurisdiction you searched has zero or very few results** on a topic where you'd expect significant case law or legislation. Issue type: `"data_quality"`.
 - **A document URL returned by the API is broken** (404, redirect to wrong page). Issue type: `"invalid_url"`.
@@ -16,28 +23,35 @@ File a `report_source_issue` when:
 - **A known important source is missing entirely** — e.g., you know a country's constitutional court should be indexed but `discover_sources` doesn't list it. Issue type: `"unavailable"`.
 - **Document text is garbled, truncated, or in the wrong language**. Issue type: `"data_quality"`.
 
-### How to file
+### How to file (after the user agrees)
 
 Use `report_source_issue` with:
 - `source`: The source identifier (e.g., `"DE/BVerfG"`, `"FR/Judilibre"`). Use `discover_sources` to find valid source identifiers.
 - `issue_type`: One of `"unavailable"`, `"indexing"`, `"invalid_url"`, `"data_quality"`, `"other"`.
-- `description`: Be specific. Include the query you ran, what you expected to find, and what you actually got (or didn't get). Example: `"Searched for 'unfair dismissal' in UK case law with court_tier=1 and date_start=2020-01-01. Expected Employment Tribunal and EAT decisions but got 0 results. The UK/Bailii source shows 48,000+ documents so coverage should exist for this topic."`.
+- `description`: Neutral and limited to what was missing or broken in the source. No query text, user facts, names, or task description. Example: `"UK/Bailii: Employment Appeal Tribunal decisions from 2020 onward appear to be missing; the source lists 48,000+ documents but returns none for this court and date range."`. Another example: `"FR/Judilibre: document URLs for several Cour de cassation decisions return 404."`.
 
 ### How to report to the user
 
-When you encounter a data gap during research, tell the user transparently:
+When you encounter a data gap during research, tell the user transparently in your answer, then offer an optional report and show the exact proposed text:
 
-> **Data gap noted**: [Country/Source] returned limited results for [topic]. I've filed an issue with the platform (issue type: [type]). The platform's coverage improves daily, so this may be resolved soon. In the meantime, [alternative approach — e.g., "I've supplemented with web search for doctrinal commentary" or "the analysis for this jurisdiction relies on legislation only"].
+> **Data gap noted**: [Country/Source] returned limited results for this research. [Alternative approach — e.g., "I've supplemented with web search for doctrinal commentary" or "the analysis for this jurisdiction relies on legislation only"].
+>
+> If you'd like, I can send an optional report to Legal Data Hunter about this gap. It would contain only:
+> - `source`: [source]
+> - `issue_type`: [type]
+> - `description`: "[neutral description of what was missing or broken]"
+>
+> Should I send it?
 
-Never silently skip a jurisdiction because of missing data. Always flag the gap, file the issue, and explain what you did instead.
+Call `report_source_issue` only if the user agrees to that report. If they decline, do not file; the gap stays disclosed in your answer.
 
-## Feedback Protocol — Aggressive Quality Signaling
+Never silently skip a jurisdiction because of missing data. Always disclose the gap and explain what you did instead, whether or not a report is filed.
 
-The Legal Data Hunter is a commercial product with a feedback loop. **Use it aggressively.** Filing feedback is cheap (free API call), but the signal is high-value for product improvement. You should be filing feedback far more often than feels comfortable — err heavily on the side of filing.
+## Tool and Workflow Feedback
 
-### What to flag (beyond data gaps)
+Beyond data gaps, the user may want to report problems with the tools themselves. The same consent rules apply: mention the problem, offer a report, show the exact text, and file only after the user agrees.
 
-File `report_source_issue` or use the feedback mechanism for **any** of the following:
+### What you may offer to report (beyond data gaps)
 
 **Data quality issues:**
 - Zero results where results are expected
@@ -48,7 +62,7 @@ File `report_source_issue` or use the feedback mechanism for **any** of the foll
 - Duplicate documents in search results
 - Date fields that look wrong (e.g., 1970-01-01 placeholder dates)
 
-**Tool design issues (flag these explicitly):**
+**Tool design issues:**
 - A parameter that's confusing or underdocumented — e.g., `alpha` behavior is not self-explanatory
 - A tool that requires two calls where one would do — e.g., needing `discover_sources` before `search` just to learn the language of a source
 - Search results that include fields with no documentation (what does `score` mean? how is it normalized?)
@@ -60,20 +74,16 @@ File `report_source_issue` or use the feedback mechanism for **any** of the foll
 - Rate limiting or latency that degrades the multi-jurisdictional parallel search workflow
 - A common research pattern (adversarial search, temporal check) that could be exposed as a built-in tool parameter
 
-### How to frame feedback
+### How to word a report
 
-Be specific and direct. Good feedback is actionable. Bad feedback is vague.
+Be specific and neutral. Describe the data or tool problem, not the user's research.
 
-**Good**: `"The 'search' tool returns a 'url' field for ~60% of results and omits it for the rest, with no indication of why. This forces a fallback to 'get_document' for every result just to check if a URL exists — a significant overhead. Either always return the URL or add a 'has_url' boolean so the caller can decide whether to fetch."`
+**Good**: `"The 'search' tool returns a 'url' field for some results and omits it for others, with no indication of why. Either always return the URL or add a 'has_url' boolean so the caller can decide whether to fetch."`
 
 **Bad**: `"Some results don't have URLs."`
 
-Always include:
-- What you were trying to do
-- What you expected to happen
-- What actually happened
-- Concrete suggestion if you have one
-
-### Frequency
-
-If you complete a multi-jurisdictional research task without filing at least one piece of feedback, ask yourself whether you were paying attention. On any non-trivial query across 3+ jurisdictions, you will encounter something worth flagging. The platform is actively developed — your signal matters and reaches the team directly.
+Include only:
+- Source
+- Issue type
+- What was missing or broken (expected vs. actual, described in terms of the source or tool)
+- Optionally, a concrete suggestion about the data or tool, with no user content
