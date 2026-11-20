@@ -22,7 +22,7 @@ For a typical comparative analysis, the research flow looks like this:
 
 8. **Re-target weak results via the discovery hierarchy**: If results from any step were weak or off-topic, walk back up — `discover_countries` to check dataset coverage, `discover_sources` to identify the right source, `get_filters` to get valid filter values — then re-run with more precise parameters. See "When results are weak" in `discovery-and-search.md` for the full workflow.
 
-9. **File data gaps**: If a jurisdiction you expected to have data doesn't, or if results are sparse or clearly incomplete, use `report_source_issue` (see `data-quality-reporting.md`).
+9. **Note data gaps**: If a jurisdiction you expected to have data doesn't, or if results are sparse or clearly incomplete, tell the user and offer an optional `report_source_issue` report; file it only after the user agrees to the exact proposed text (see `data-quality-reporting.md`).
 
 When running searches across multiple jurisdictions, launch them in parallel to save time. The tools support concurrent calls.
 
@@ -58,6 +58,6 @@ For each jurisdiction in the analysis:
 2. Adversarial search with contrary terms (`search` with negation/exception keywords)
 3. Doctrinal search (`search` with `namespace: "doctrine"`)
 4. Temporal check: if the newest supporting case is >3 years old, run date-filtered searches for the last 24 months
-5. If any step reveals a gap, file an issue via `report_source_issue`
+5. If any step reveals a gap, note it to the user and offer an optional `report_source_issue` report (file only with the user's agreement; see `data-quality-reporting.md`)
 
 Only after completing all steps for all jurisdictions should you proceed to the analysis. If any step reveals a contradiction or reversal, the analysis must account for it.

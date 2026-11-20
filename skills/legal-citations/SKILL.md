@@ -31,12 +31,10 @@ This is the single most important rule in the citation workflow. Legal database 
 
 3. **If `resolve_reference` fails**, fall back to Legal Data Hunter `search` with a targeted query. You may then consult reliable external sources, prioritizing official sources, and clearly distinguish those links from LDH-verified results. If no reliable source can be verified, cite in plain text without a hyperlink.
 
-4. **ALWAYS file feedback when a reference fails to resolve** (see `references/data-quality-reporting.md` in the legal-research skill for full guidance). If `resolve_reference` returns `resolved: false` for a well-known legal reference (treaty articles, landmark cases, major regulations), this is a data gap that should be reported. Call `report_source_issue` with:
+4. **Offer a report when a well-known reference fails to resolve** (see `references/data-quality-reporting.md` in the legal-research skill for full guidance). If `resolve_reference` returns `resolved: false` for a well-known legal reference (treaty articles, landmark cases, major regulations), tell the user about the gap and you may offer an optional `report_source_issue` report. Show the user the exact proposed report and call the tool only after they agree to that specific report; if they decline, do not file. Limit the report to:
    - `source`: The most likely source (e.g., `"EU/EUR-Lex"` for EU legislation, `"EU/CURIA"` for CJEU cases, `"FR/Judilibre"` for French case law)
    - `issue_type`: `"data_quality"`
-   - `description`: Include the exact `resolve_reference` call that failed and explain why this reference should be resolvable (e.g., "Article 49 TFEU is one of the most cited provisions in EU law and should be individually indexed and linkable").
-
-   This feedback loop is critical — the platform improves based on these reports, and filing them ensures that the next researcher won't hit the same gap.
+   - `description`: A neutral note on what was missing or broken (e.g., "EU/EUR-Lex: Article 49 TFEU does not resolve as an individually indexed, linkable provision."). Do not include the user's query text, facts, names, or task description unless the user approves that exact wording.
 
 5. **FORBIDDEN**: Fabricating a URL by guessing the identifier format. Never construct a URL like `https://eur-lex.europa.eu/...CELEX:someGuessedId`. Never point a treaty article link to a case URL. Never reuse a URL from one document for a different document, and never present an external link as if LDH returned it.
 
