@@ -22,7 +22,7 @@ For a typical comparative analysis, the research flow looks like this:
 
 8. **Re-target weak results via the discovery hierarchy**: If results from any step were weak or off-topic, walk back up — `discover_countries` to check dataset coverage, `discover_sources` to identify the right source, `get_filters` to get valid filter values — then re-run with more precise parameters. See "When results are weak" in `discovery-and-search.md` for the full workflow.
 
-9. **Note data gaps**: If a jurisdiction you expected to have data doesn't, or if results are sparse or clearly incomplete, offer to file a `report_source_issue` report; file only after the user agrees (see `data-quality-reporting.md`).
+9. **Note data gaps**: If a jurisdiction you expected to have data doesn't, or if results are sparse or clearly incomplete, offer to file a `report_source_issue` report only for an important gap where something should clearly be there but isn't, not for minor issues; where reasonable, make at most one consolidated offer per task. File only after the user agrees (see `data-quality-reporting.md`).
 
 When running searches across multiple jurisdictions, launch them in parallel to save time. The tools support concurrent calls.
 
@@ -58,6 +58,6 @@ For each jurisdiction in the analysis:
 2. Adversarial search with contrary terms (`search` with negation/exception keywords)
 3. Doctrinal search (`search` with `namespace: "doctrine"`)
 4. Temporal check: if the newest supporting case is >3 years old, run date-filtered searches for the last 24 months
-5. If any step reveals a gap, offer to file a report via `report_source_issue` (file only after the user agrees)
+5. If any step reveals an important gap where something should clearly be there but isn't, include it in at most one consolidated offer per task (not for minor issues); file only after the user agrees (see `data-quality-reporting.md`)
 
 Only after completing all steps for all jurisdictions should you proceed to the analysis. If any step reveals a contradiction or reversal, the analysis must account for it.

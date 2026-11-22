@@ -8,7 +8,7 @@ The Legal Data Hunter is a growing platform — data improves daily. When you en
 
 ### When to offer to file an issue
 
-Offer to file a `report_source_issue` only when something should clearly be in Legal Data Hunter but isn't (a source, document, or reference that should exist but is missing or broken), not for every minor gap and not aggressively or frequently. Where reasonable, make at most one consolidated offer per task, listing the gaps briefly. Typical cases:
+Offer to file a `report_source_issue` only when something should clearly be in Legal Data Hunter but isn't (a source, document, or reference that should exist but is missing or broken) — only for important data gaps, not for minor issues. Where reasonable, make at most one consolidated offer per task, listing the gaps briefly. Typical cases:
 
 - **A jurisdiction you searched has zero or very few results** on a topic where you'd expect significant case law or legislation. Issue type: `"data_quality"`.
 - **A document URL returned by the API is broken** (404, redirect to wrong page). Issue type: `"invalid_url"`.
@@ -33,7 +33,7 @@ Never silently skip a jurisdiction because of missing data. Always flag the gap 
 
 ## Feedback Protocol
 
-The Legal Data Hunter is a commercial product with a feedback loop. Offer a report only for a clear data or tool problem (something that should be there but isn't, or a broken or misleading result), not for every minor issue and not aggressively or frequently. Where reasonable, make at most one consolidated offer per task, listing the gaps briefly. Call `report_source_issue` only after the user agrees to that specific report.
+The Legal Data Hunter is a commercial product with a feedback loop. Offer a report only for an important data or tool problem (something that should be there but isn't, or a broken or misleading result), not for minor issues. Where reasonable, make at most one consolidated offer per task, listing the gaps briefly. Call `report_source_issue` only after the user agrees to that specific report.
 
 ### What to flag (beyond data gaps)
 
@@ -48,7 +48,7 @@ Offer to file a `report_source_issue` or use the feedback mechanism only for a c
 - Duplicate documents in search results
 - Date fields that look wrong (e.g., 1970-01-01 placeholder dates)
 
-**Tool design issues (flag these explicitly):**
+**Tool design issues (report these only with the user's approval):**
 - A parameter that's confusing or underdocumented — e.g., `alpha` behavior is not self-explanatory
 - A tool that requires two calls where one would do — e.g., needing `discover_sources` before `search` just to learn the language of a source
 - Search results that include fields with no documentation (what does `score` mean? how is it normalized?)
