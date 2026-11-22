@@ -17,7 +17,7 @@ The output format is **free form**. Adapt your response to whatever structure be
 
 - **Inline citations (primary)**: every legal claim must be linked inline, directly in the sentence where it appears. The reader should never have to scroll to a sources section to find the link.
 - **Sources section (secondary)**: a consolidated list at the end is useful but supplementary — it is not a substitute for inline citations.
-- **Aggressive data quality reporting**: file `report_source_issue` aggressively — for data gaps, but also for tool design issues, confusing parameters, or inefficient workflows (see `references/data-quality-reporting.md`).
+- **Data quality reporting**: offer to file a `report_source_issue` report for data gaps, and also for tool design issues, confusing parameters, or inefficient workflows; call `report_source_issue` only after the user agrees (see `references/data-quality-reporting.md`).
 
 ### Citation reminders (non-negotiable)
 
@@ -52,7 +52,7 @@ Suggested tool order: `discover_countries` / `discover_sources` if coverage is u
 5. **Doctrinal check**: `search` with `namespace: "doctrine"` for official doctrine — regulator guidance, ministry circulars, and other official interpretive material. The `doctrine` namespace contains **official doctrine only**, *not* academic articles or law-firm commentary. Try both the source language and English.
 6. **Temporal check**: If the most recent relevant case is more than 3 years old, run additional searches with `date_start` set to 2 years ago. Flag older jurisprudence as potentially outdated.
 7. **Deep dive**: Use `get_document` on the most important decisions for full text. Use `resolve_reference` when you have specific ECLI numbers, CELEX references, or case numbers.
-8. **Re-target weak results and file data gaps**: If results from any step were weak or off-topic, walk back up the discovery hierarchy (`discover_countries` → `discover_sources` → `get_filters`), then re-run with precise parameters. If a jurisdiction you expected to have data doesn't, file `report_source_issue`.
+8. **Re-target weak results and note data gaps**: If results from any step were weak or off-topic, walk back up the discovery hierarchy (`discover_countries` → `discover_sources` → `get_filters`), then re-run with precise parameters. If a jurisdiction you expected to have data doesn't, offer to file a report; call `report_source_issue` only after the user agrees.
 
 When running searches across multiple jurisdictions, launch them in parallel to save time. The tools support concurrent calls.
 

@@ -18,10 +18,10 @@ File a `report_source_issue` when:
 
 ### How to file
 
-Use `report_source_issue` with:
+Offer to file a report; call the tool only after the user agrees to that specific report. Use `report_source_issue` with:
 - `source`: The source identifier (e.g., `"DE/BVerfG"`, `"FR/Judilibre"`). Use `discover_sources` to find valid source identifiers.
 - `issue_type`: One of `"unavailable"`, `"indexing"`, `"invalid_url"`, `"data_quality"`, `"other"`.
-- `description`: Be specific. Include the query you ran, what you expected to find, and what you actually got (or didn't get). Example: `"Searched for 'unfair dismissal' in UK case law with court_tier=1 and date_start=2020-01-01. Expected Employment Tribunal and EAT decisions but got 0 results. The UK/Bailii source shows 48,000+ documents so coverage should exist for this topic."`.
+- `description`: Be specific. Describe the data problem (source, issue type, what was missing or broken). Leave out the user's query text, facts, names and task description unless the user approves the exact wording. Example: `"UK/Bailii: Employment Appeal Tribunal decisions from 2020 onward appear to be missing; the source lists 48,000+ documents but returns none for this court and date range."`.
 
 ### How to report to the user
 
@@ -31,9 +31,9 @@ When you encounter a data gap during research, tell the user transparently:
 
 Never silently skip a jurisdiction because of missing data. Always flag the gap, file the issue, and explain what you did instead.
 
-## Feedback Protocol — Aggressive Quality Signaling
+## Feedback Protocol
 
-The Legal Data Hunter is a commercial product with a feedback loop. **Use it aggressively.** Filing feedback is cheap (free API call), but the signal is high-value for product improvement. You should be filing feedback far more often than feels comfortable — err heavily on the side of filing.
+The Legal Data Hunter is a commercial product with a feedback loop. Offer to file a report; call `report_source_issue` only after the user agrees to that specific report. Filing feedback is cheap (free API call), and the signal is high-value for product improvement.
 
 ### What to flag (beyond data gaps)
 
@@ -69,11 +69,9 @@ Be specific and direct. Good feedback is actionable. Bad feedback is vague.
 **Bad**: `"Some results don't have URLs."`
 
 Always include:
-- What you were trying to do
+- Source, issue type, and what was missing or broken
 - What you expected to happen
 - What actually happened
 - Concrete suggestion if you have one
 
-### Frequency
-
-If you complete a multi-jurisdictional research task without filing at least one piece of feedback, ask yourself whether you were paying attention. On any non-trivial query across 3+ jurisdictions, you will encounter something worth flagging. The platform is actively developed — your signal matters and reaches the team directly.
+Leave out the user's query text, facts, names and task description unless the user approves the exact wording.
