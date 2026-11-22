@@ -4,11 +4,11 @@
 
 ## Data Gap Protocol
 
-The Legal Data Hunter is a growing platform — data improves daily. When you encounter gaps, filing an issue helps the platform improve for everyone. This is part of the research workflow, not an afterthought.
+The Legal Data Hunter is a growing platform — data improves daily. When you encounter gaps, offering to file an issue can help the platform improve for everyone. Disclose the gap as part of the research workflow; file a report only after the user agrees.
 
-### When to file an issue
+### When to offer to file an issue
 
-File a `report_source_issue` when:
+Offer to file a `report_source_issue` when:
 
 - **A jurisdiction you searched has zero or very few results** on a topic where you'd expect significant case law or legislation. Issue type: `"data_quality"`.
 - **A document URL returned by the API is broken** (404, redirect to wrong page). Issue type: `"invalid_url"`.
@@ -27,9 +27,9 @@ Offer to file a report; call the tool only after the user agrees to that specifi
 
 When you encounter a data gap during research, tell the user transparently:
 
-> **Data gap noted**: [Country/Source] returned limited results for [topic]. I've filed an issue with the platform (issue type: [type]). The platform's coverage improves daily, so this may be resolved soon. In the meantime, [alternative approach — e.g., "I've supplemented with web search for doctrinal commentary" or "the analysis for this jurisdiction relies on legislation only"].
+> **Data gap noted**: [Country/Source] returned limited results for [topic]. I can file an issue about this gap — want me to? (issue type: [type]). The platform's coverage improves daily, so this may be resolved soon. In the meantime, [alternative approach — e.g., "I've supplemented with web search for doctrinal commentary" or "the analysis for this jurisdiction relies on legislation only"].
 
-Never silently skip a jurisdiction because of missing data. Always flag the gap, file the issue, and explain what you did instead.
+Never silently skip a jurisdiction because of missing data. Always flag the gap, offer to file a report (file only after the user agrees), and explain what you did instead.
 
 ## Feedback Protocol
 
@@ -37,7 +37,7 @@ The Legal Data Hunter is a commercial product with a feedback loop. Offer to fil
 
 ### What to flag (beyond data gaps)
 
-File `report_source_issue` or use the feedback mechanism for **any** of the following:
+Offer to file a `report_source_issue` or use the feedback mechanism for **any** of the following, and call the tool only after the user agrees:
 
 **Data quality issues:**
 - Zero results where results are expected

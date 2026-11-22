@@ -41,7 +41,7 @@ The Legal Data Hunter MCP provides access to 38M+ legal documents across 230+ ju
 
 Key `search` parameters: `query` (natural language, any language), `namespace` (`"case_law"` / `"legislation"` / `"doctrine"`), `country` (LDH jurisdiction codes — mostly ISO alpha-2 plus aggregates like `EU`, `UN`, `CoE`, `INTL`, `OECD`), `court_tier` (`1` = supreme/constitutional, `2` = appellate, `3` = first instance), `date_start` / `date_end` (`YYYY-MM-DD`), `alpha` (semantic vs keyword balance from `0.0` = pure keyword to `1.0` = pure semantic, default `0.7`; push toward `1.0` for concepts, toward `0.0` for exact terms and identifiers), `top_k`, `language`, `jurisdiction`, `subdivision`. Full parameter reference and the discovery hierarchy are in `references/discovery-and-search.md`.
 
-Suggested tool order: `discover_countries` / `discover_sources` if coverage is unclear → `resolve_reference` when the user gives a citation → `search` for topic research → `get_document` for full text once you have `source` and `source_id` → `report_source_issue` when a record or URL looks wrong or a well-known reference fails to resolve. Prefer official primary sources returned by the tools; do not invent citations or holdings.
+Suggested tool order: `discover_countries` / `discover_sources` if coverage is unclear → `resolve_reference` when the user gives a citation → `search` for topic research → `get_document` for full text once you have `source` and `source_id` → offer `report_source_issue` only after the user agrees to a specific report (for example, when a record or URL looks wrong or a well-known reference fails to resolve). Prefer official primary sources returned by the tools; do not invent citations or holdings.
 
 ## Core research workflow (8 steps)
 
@@ -76,4 +76,4 @@ Use the default workflow above for ordinary legal research, where current offici
 | Score legal risk (severity × likelihood) or decide on escalation to outside counsel | **legal-risk-assessment** skill |
 | Write a long-form memo that resolves enumerated sub-issues | **multi-issue-memo** skill |
 | Format the memo / produce a PDF with clickable hyperlinks | `references/memo-format.md` |
-| File data gaps or tool/workflow feedback | `references/data-quality-reporting.md` |
+| Offer to file a data gap or tool/workflow report (only after the user agrees) | `references/data-quality-reporting.md` |
