@@ -8,7 +8,7 @@ The output format is **free form**. Adapt your response to whatever structure be
 
 - **Inline citations (primary)**: every legal claim must be linked inline, directly in the sentence where it appears. This is the primary citation standard. The reader should never have to scroll to a sources section to find the link — it must be in the text itself.
 - **Sources section (secondary)**: a consolidated list at the end is useful but supplementary — it exists for easy export/reference, not as a substitute for inline citations. If you didn't cite inline, a sources section does not fix it.
-- **Data quality reporting**: offer to file a `report_source_issue` report for data gaps, and also for tool design issues, confusing parameters, or inefficient workflows; call `report_source_issue` only after the user agrees (see `data-quality-reporting.md`).
+- **Data quality reporting**: offer to file a `report_source_issue` report only when something should clearly be in the data but isn't (or for a clear tool-design issue, confusing parameter, or broken workflow), not for every minor gap; where reasonable, make at most one consolidated offer per task. Call `report_source_issue` only after the user agrees (see `data-quality-reporting.md`).
 
 The full inline-citation discipline and the Sources section format live in the **legal-citations** skill.
 

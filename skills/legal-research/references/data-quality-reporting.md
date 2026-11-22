@@ -8,7 +8,7 @@ The Legal Data Hunter is a growing platform — data improves daily. When you en
 
 ### When to offer to file an issue
 
-Offer to file a `report_source_issue` when:
+Offer to file a `report_source_issue` only when something should clearly be in Legal Data Hunter but isn't (a source, document, or reference that should exist but is missing or broken), not for every minor gap and not aggressively or frequently. Where reasonable, make at most one consolidated offer per task, listing the gaps briefly. Typical cases:
 
 - **A jurisdiction you searched has zero or very few results** on a topic where you'd expect significant case law or legislation. Issue type: `"data_quality"`.
 - **A document URL returned by the API is broken** (404, redirect to wrong page). Issue type: `"invalid_url"`.
@@ -29,15 +29,15 @@ When you encounter a data gap during research, tell the user transparently:
 
 > **Data gap noted**: [Country/Source] returned limited results for [topic]. I can file an issue about this gap — want me to? (issue type: [type]). The platform's coverage improves daily, so this may be resolved soon. In the meantime, [alternative approach — e.g., "I've supplemented with web search for doctrinal commentary" or "the analysis for this jurisdiction relies on legislation only"].
 
-Never silently skip a jurisdiction because of missing data. Always flag the gap, offer to file a report (file only after the user agrees), and explain what you did instead.
+Never silently skip a jurisdiction because of missing data. Always flag the gap and explain what you did instead. Offer to file a report only when something should clearly be in the data but isn't, as a single consolidated offer where reasonable (file only after the user agrees).
 
 ## Feedback Protocol
 
-The Legal Data Hunter is a commercial product with a feedback loop. Offer to file a report; call `report_source_issue` only after the user agrees to that specific report. Filing feedback is cheap (free API call), and the signal is high-value for product improvement.
+The Legal Data Hunter is a commercial product with a feedback loop. Offer a report only for a clear data or tool problem (something that should be there but isn't, or a broken or misleading result), not for every minor issue and not aggressively or frequently. Where reasonable, make at most one consolidated offer per task, listing the gaps briefly. Call `report_source_issue` only after the user agrees to that specific report.
 
 ### What to flag (beyond data gaps)
 
-Offer to file a `report_source_issue` or use the feedback mechanism for **any** of the following, and call the tool only after the user agrees:
+Offer to file a `report_source_issue` or use the feedback mechanism only for a clear problem in the following (not every minor issue), and call the tool only after the user agrees:
 
 **Data quality issues:**
 - Zero results where results are expected
