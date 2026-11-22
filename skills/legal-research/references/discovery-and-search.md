@@ -16,7 +16,7 @@ There is a 3-level discovery hierarchy before you search. Use it whenever the ri
 | `search` | — | Hybrid semantic + keyword search across case_law, legislation, or doctrine | The primary research tool — always informed by the discovery hierarchy above |
 | `get_document` | — | Retrieve full document text by source + source_id | When you need the complete text of a decision, statute, or article found via search |
 | `resolve_reference` | — | Resolve a loose citation (ECLI, CELEX, article number, case number) to the exact document | When you have a specific citation and need to find the corresponding record |
-| `report_source_issue` | — | Flag missing data, broken URLs, indexing errors, or quality issues | When research reveals gaps — missing decisions, broken links, or poor data quality (see `data-quality-reporting.md`) |
+| `report_source_issue` | — | Flag missing data, broken URLs, indexing errors, or quality issues | Only after the user agrees to a report you offered about a gap — missing decisions, broken links, or poor data quality (see `data-quality-reporting.md`) |
 
 ## Understanding `search` parameters
 
@@ -45,14 +45,14 @@ If a search returns results that are off-topic, too broad, or clearly not what y
 | Results from unexpected countries or source types | Searching too broadly without country filter | `discover_sources(country_code)` → identify the right source IDs, then filter by source |
 | Correct country but wrong court/chamber | You don't know what courts are indexed | `discover_sources(country_code)` → see which courts exist and their tiers |
 | Right source, but results span irrelevant jurisdictions or chambers | Valid filter values unknown | `get_filters(source)` → get exact `jurisdiction`, `subdivision`, `language` values, re-run with them |
-| Uniformly low relevance scores | Source may not cover this topic at all | `discover_sources` → check document count and date range; if thin, file `report_source_issue` |
+| Uniformly low relevance scores | Source may not cover this topic at all | `discover_sources` → check document count and date range; if thin and this is an important gap (something should clearly be there but isn't, not a minor issue), include it in at most one consolidated offer per task (file only after the user agrees; see `data-quality-reporting.md`) |
 
 **The re-targeting workflow:**
 
 ```
 Step 1 — Dataset check (discover_countries)
   → Is the country actually covered? Does it have meaningful document volume?
-  → If not: note the gap, file report_source_issue, pivot to adjacent jurisdiction or EU-level sources
+  → If not: note the gap; if it is an important gap (something should clearly be there but isn't, not a minor issue), include it in at most one consolidated offer per task (file only after the user agrees; see `data-quality-reporting.md`); pivot to adjacent jurisdiction or EU-level sources
 
 Step 2 — Source check (discover_sources)
   → Which specific sources (courts, codes) exist for this country?
@@ -66,7 +66,7 @@ Step 3 — Filter check (get_filters)
 
 Step 4 — Re-run search() with correct source + filters
   → Use the source-confirmed language, jurisdiction, and chamber values
-  → If still weak after this: it's a genuine data gap → report_source_issue
+  → If still weak after this: if it's an important gap (something should clearly be there but isn't, not a minor issue), include it in at most one consolidated offer per task (file only after the user agrees; see `data-quality-reporting.md`)
 ```
 
 **Example — weak results on German administrative law:**
@@ -83,7 +83,7 @@ Step 4 — Re-run search() with correct source + filters
 # → Precise, on-point results from the right court
 ```
 
-**Reporting discovery gaps:** If `discover_sources` shows very few sources for a country you'd expect to be well-covered, or `get_filters` returns sparse metadata (missing `jurisdiction` or `chamber` values), flag it via `report_source_issue` with `issue_type="data_quality"`. These gaps limit precision for everyone — reporting them directly improves the platform.
+**Reporting discovery gaps:** If `discover_sources` shows very few sources for a country you'd expect to be well-covered, or `get_filters` returns sparse metadata (missing `jurisdiction` or `chamber` values), offer to file a `report_source_issue` report with `issue_type="data_quality"` only for an important gap where something should clearly be there but isn't, not for minor issues; where reasonable, make at most one consolidated offer per task. File only after the user agrees (see `data-quality-reporting.md`). These gaps limit precision for everyone.
 
 ## Critical: search in the source language
 

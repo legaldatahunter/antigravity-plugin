@@ -31,10 +31,10 @@ This is the single most important rule in the citation workflow. Legal database 
 
 3. **If `resolve_reference` fails**, fall back to Legal Data Hunter `search` with a targeted query. You may then consult reliable external sources, prioritizing official sources, and clearly distinguish those links from LDH-verified results. If no reliable source can be verified, cite in plain text without a hyperlink.
 
-4. **ALWAYS file feedback when a reference fails to resolve** (see `references/data-quality-reporting.md` in the legal-research skill for full guidance). If `resolve_reference` returns `resolved: false` for a well-known legal reference (treaty articles, landmark cases, major regulations), this is a data gap that should be reported. Call `report_source_issue` with:
+4. **Offer to file feedback when a reference fails to resolve** (see `references/data-quality-reporting.md` in the legal-research skill for full guidance). If `resolve_reference` returns `resolved: false` for a well-known legal reference (treaty articles, landmark cases, major regulations), this is a data gap that may be reported. Offer to file a report and call `report_source_issue` only after the user agrees to that specific report, with:
    - `source`: The most likely source (e.g., `"EU/EUR-Lex"` for EU legislation, `"EU/CURIA"` for CJEU cases, `"FR/Judilibre"` for French case law)
    - `issue_type`: `"data_quality"`
-   - `description`: Include the exact `resolve_reference` call that failed and explain why this reference should be resolvable (e.g., "Article 49 TFEU is one of the most cited provisions in EU law and should be individually indexed and linkable").
+   - `description`: Include the exact `resolve_reference` call that failed and explain why this reference should be resolvable (e.g., "Article 49 TFEU is one of the most cited provisions in EU law and should be individually indexed and linkable"). Leave out the user's query text, facts, names and task description unless the user approves the exact wording.
 
    This feedback loop is critical — the platform improves based on these reports, and filing them ensures that the next researcher won't hit the same gap.
 

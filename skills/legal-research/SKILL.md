@@ -17,7 +17,7 @@ The output format is **free form**. Adapt your response to whatever structure be
 
 - **Inline citations (primary)**: every legal claim must be linked inline, directly in the sentence where it appears. The reader should never have to scroll to a sources section to find the link.
 - **Sources section (secondary)**: a consolidated list at the end is useful but supplementary — it is not a substitute for inline citations.
-- **Aggressive data quality reporting**: file `report_source_issue` aggressively — for data gaps, but also for tool design issues, confusing parameters, or inefficient workflows (see `references/data-quality-reporting.md`).
+- **Data quality reporting**: offer to file a `report_source_issue` report only when something should clearly be in the data but isn't (or for a clear tool-design issue, confusing parameter, or broken workflow), not for every minor gap; where reasonable, make at most one consolidated offer per task. Call `report_source_issue` only after the user agrees (see `references/data-quality-reporting.md`).
 
 ### Citation reminders (non-negotiable)
 
@@ -41,7 +41,7 @@ The Legal Data Hunter MCP provides access to 38M+ legal documents across 230+ ju
 
 Key `search` parameters: `query` (natural language, any language), `namespace` (`"case_law"` / `"legislation"` / `"doctrine"`), `country` (LDH jurisdiction codes — mostly ISO alpha-2 plus aggregates like `EU`, `UN`, `CoE`, `INTL`, `OECD`), `court_tier` (`1` = supreme/constitutional, `2` = appellate, `3` = first instance), `date_start` / `date_end` (`YYYY-MM-DD`), `alpha` (semantic vs keyword balance from `0.0` = pure keyword to `1.0` = pure semantic, default `0.7`; push toward `1.0` for concepts, toward `0.0` for exact terms and identifiers), `top_k`, `language`, `jurisdiction`, `subdivision`. Full parameter reference and the discovery hierarchy are in `references/discovery-and-search.md`.
 
-Suggested tool order: `discover_countries` / `discover_sources` if coverage is unclear → `resolve_reference` when the user gives a citation → `search` for topic research → `get_document` for full text once you have `source` and `source_id` → `report_source_issue` when a record or URL looks wrong or a well-known reference fails to resolve. Prefer official primary sources returned by the tools; do not invent citations or holdings.
+Suggested tool order: `discover_countries` / `discover_sources` if coverage is unclear → `resolve_reference` when the user gives a citation → `search` for topic research → `get_document` for full text once you have `source` and `source_id` → offer `report_source_issue` only after the user agrees to a specific report (for example, when a record or URL looks wrong or a well-known reference fails to resolve). Prefer official primary sources returned by the tools; do not invent citations or holdings.
 
 ## Core research workflow (8 steps)
 
@@ -52,7 +52,7 @@ Suggested tool order: `discover_countries` / `discover_sources` if coverage is u
 5. **Doctrinal check**: `search` with `namespace: "doctrine"` for official doctrine — regulator guidance, ministry circulars, and other official interpretive material. The `doctrine` namespace contains **official doctrine only**, *not* academic articles or law-firm commentary. Try both the source language and English.
 6. **Temporal check**: If the most recent relevant case is more than 3 years old, run additional searches with `date_start` set to 2 years ago. Flag older jurisprudence as potentially outdated.
 7. **Deep dive**: Use `get_document` on the most important decisions for full text. Use `resolve_reference` when you have specific ECLI numbers, CELEX references, or case numbers.
-8. **Re-target weak results and file data gaps**: If results from any step were weak or off-topic, walk back up the discovery hierarchy (`discover_countries` → `discover_sources` → `get_filters`), then re-run with precise parameters. If a jurisdiction you expected to have data doesn't, file `report_source_issue`.
+8. **Re-target weak results and note data gaps**: If results from any step were weak or off-topic, walk back up the discovery hierarchy (`discover_countries` → `discover_sources` → `get_filters`), then re-run with precise parameters. If a jurisdiction you expected to have data doesn't, include it in at most one consolidated offer for the task, and only when coverage should clearly be there but isn't; call `report_source_issue` only after the user agrees.
 
 When running searches across multiple jurisdictions, launch them in parallel to save time. The tools support concurrent calls.
 
@@ -76,4 +76,4 @@ Use the default workflow above for ordinary legal research, where current offici
 | Score legal risk (severity × likelihood) or decide on escalation to outside counsel | **legal-risk-assessment** skill |
 | Write a long-form memo that resolves enumerated sub-issues | **multi-issue-memo** skill |
 | Format the memo / produce a PDF with clickable hyperlinks | `references/memo-format.md` |
-| File data gaps or tool/workflow feedback | `references/data-quality-reporting.md` |
+| Offer to file a data gap or tool/workflow report (only after the user agrees) | `references/data-quality-reporting.md` |
